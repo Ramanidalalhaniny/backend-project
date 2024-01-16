@@ -1,0 +1,35 @@
+const express = require('express');
+const bodyParser = require('body-parser');
+const port = 9000;
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('views'));
+app.get('/', (req, res) => {
+    res.sendFile('views/main.html', { root: __dirname });
+});
+app.get('/form', (req, res) => {
+    res.sendFile('views/form.html', { root: __dirname });
+});
+app.get('/getAllProducts', (req, res) => {
+    const products = json.parse(fs.readFileSync('products.json'));
+    res.json(products);
+});
+app.post('/requestProduct', (req, res) => {
+    const product_n = req.body.product_n;
+    res.send(`Product request received for: ${productName}`);
+});
+app.post('/addNewProduct', (req, res) => {
+    const new_product = {
+        id: Date.now(),
+        name: req.body.product_n
+    };
+
+    const product = json.parse(fs.readFileSync('products.json'));
+    product.push(newProduct);
+    f.writeFileSync('products.json', JSON.stringify(products));
+
+    res.json(products);
+});
+
+app.listen(port, () => {
+    console.log(`running at https://localhost:${port}`);
+});
